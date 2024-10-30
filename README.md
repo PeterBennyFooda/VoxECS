@@ -19,8 +19,8 @@ I plan to implement greedy meshing to further reduce the number of vertices.
 
 ### Character Controls
 Enabled player movement using both mouse and keyboard, along with block placement and removal functionality.  
-<img src= "https://github.com/user-attachments/assets/b03fd4dd-1597-4b9a-ae0a-7f9cc8ec6599" width ="340.8" height="192">
-<img src= "https://github.com/user-attachments/assets/b0603b61-2be7-4fd0-a652-0f664efca6e6" width ="340.8" height="192">
+<img src= "https://github.com/user-attachments/assets/b03fd4dd-1597-4b9a-ae0a-7f9cc8ec6599" width ="383.4" height="216">
+<img src= "https://github.com/user-attachments/assets/b0603b61-2be7-4fd0-a652-0f664efca6e6" width ="383.4" height="216">
 
 ### Ambient Occlusion
 Calculated ambient occlusion for each vertex using information solely from adjacent cubes, rather than relying on post-processing.
