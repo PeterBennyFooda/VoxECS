@@ -12,7 +12,7 @@ Employed 2D and 3D Perlin noise to generate smooth, natural terrains, and utiliz
 <img src= "https://github.com/user-attachments/assets/687af15d-7f3f-4fd7-93d8-aab2ccaf2b8f" width ="382.5" height="288">
 
 ### Chunk Management
-Combined voxels into chunks mesh and culled unseen faces to optimize the meshing process.  
+Combined voxels into chunk meshes and culled unseen faces to optimize the meshing process.  
 I plan to implement greedy meshing to further reduce the number of vertices.  
 
 <img src= "https://github.com/user-attachments/assets/1db7d377-dab8-42f2-b955-86451db1bad0" width ="405" height="406.8">
