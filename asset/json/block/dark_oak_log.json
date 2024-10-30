@@ -1,0 +1,8 @@
+{
+  "id": 6,
+  "name": "VoxelWasteland::dark_oak_log",
+  "type": "solid",
+  "texture": [
+    "asset/block/dark_oak_log.png"
+  ]
+}

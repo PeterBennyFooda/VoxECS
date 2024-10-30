@@ -1,0 +1,13 @@
+{
+  "id": 5,
+  "name": "VoxelWasteland::grass_block",
+  "type": "solid",
+  "texture": [
+    "asset/block/grass_block_side.png",
+    "asset/block/grass_block_side.png",
+    "asset/block/grass_block_side.png",
+    "asset/block/grass_block_side.png",
+    "asset/block/grass_block_top.png",
+    "asset/block/dirt.png"
+  ]
+}

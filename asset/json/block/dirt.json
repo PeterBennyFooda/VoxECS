@@ -1,0 +1,8 @@
+{
+  "id": 4,
+  "name": "VoxelWasteland::dirt",
+  "type": "solid",
+  "texture": [
+    "asset/block/dirt.png"
+  ]
+}

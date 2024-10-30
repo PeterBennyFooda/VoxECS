@@ -1,0 +1,8 @@
+{
+  "id" : 0,
+  "name": "VoxelWasteland::bedrock",
+  "type": "solid",
+  "texture": [
+    "asset/block/bedrock.png"
+  ]
+}

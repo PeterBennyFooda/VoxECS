@@ -1,0 +1,8 @@
+{
+  "id": 7,
+  "name": "VoxelWasteland::dark_oak_leaves",
+  "type": "leaves",
+  "texture": [
+    "asset/block/dark_oak_leaves.png"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": 3,
+  "name": "VoxelWasteland::sand",
+  "type": "solid",
+  "texture": [
+    "asset/block/sand.png"
+  ]
+}
