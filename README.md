@@ -14,11 +14,13 @@ Employed 2D and 3D Perlin noise to generate smooth, natural terrains, and utiliz
 ### Chunk Management
 Combined voxels into chunks mesh and culled unseen faces to optimize the meshing process.  
 I plan to implement greedy meshing to further reduce the number of vertices.  
+
 <img src= "https://github.com/user-attachments/assets/1db7d377-dab8-42f2-b955-86451db1bad0" width ="405" height="406.8">
 <img src= "https://github.com/user-attachments/assets/2a6fbb9a-8a50-4b48-9622-d4085d4c7b08" width ="405" height="406.8">
 
 ### Character Controls
 Enabled player movement using both mouse and keyboard, along with block placement and removal functionality.  
+
 <img src= "https://github.com/user-attachments/assets/b03fd4dd-1597-4b9a-ae0a-7f9cc8ec6599" width ="383.4" height="216">
 <img src= "https://github.com/user-attachments/assets/b0603b61-2be7-4fd0-a652-0f664efca6e6" width ="383.4" height="216">
 
