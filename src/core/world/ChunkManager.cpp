@@ -56,9 +56,9 @@ namespace VoxelWasteland::Core
         SmoothNoiseMap(noiseMap1, noiseMap2);
 
         if(is3DNoise)
-		    HeightMapBlend(noiseMap1, heightMap);
+		    HeightMapBlend(heightMap, noiseMap1);
 
-		ProcessNoiseMap(noiseMap1, chunks, playerPos);
+		ProcessNoiseMap(heightMap, chunks, playerPos);
 
         // get textures for meshes
 		const Texture tex = GetChunkTexture();
@@ -93,7 +93,7 @@ namespace VoxelWasteland::Core
         {
             for (int z = 0; z < CHUNK_SIZE * MAP_SIZE; ++z)
             {
-                noiseMap[x * CHUNK_SIZE * MAP_SIZE + z] = noise.GetNoise((float)x, (float)z) * CHUNK_NOISE_SCALE;
+                noiseMap[x * CHUNK_SIZE * MAP_SIZE + z] = noise.GetNoise((float)x, (float)z) * CHUNK_NOISE_SCALE + CHUNK_NOISE_MODIFIER;
             }
         }
 
@@ -104,7 +104,7 @@ namespace VoxelWasteland::Core
             for (int z = 0; z < CHUNK_SIZE * MAP_SIZE; ++z)
             {
                 int index = x * CHUNK_SIZE * MAP_SIZE + z;
-                int heightDifference = CHUNK_HEIGHT - CHUNK_MIN_HEIGHT;
+                int heightDifference = CHUNK_MAX_HEIGHT - CHUNK_MIN_HEIGHT;
                 int height = CHUNK_MIN_HEIGHT + (int)(noiseMap[index] * heightDifference);
 
                 if(height < 0)
@@ -143,7 +143,7 @@ namespace VoxelWasteland::Core
 			{
 				for (int y = 0; y < CHUNK_MAX_HEIGHT; ++y)
 				{
-					noiseMap[x * CHUNK_SIZE * MAP_SIZE * CHUNK_HEIGHT + z * CHUNK_HEIGHT + y] = noise.GetNoise((float)x, (float)y, (float)z) * CHUNK_NOISE_SCALE_3D;
+                    noiseMap[x * CHUNK_SIZE * MAP_SIZE * CHUNK_HEIGHT + z * CHUNK_HEIGHT + y] = noise.GetNoise((float)x, (float)y, (float)z) * CHUNK_NOISE_SCALE_3D + CHUNK_NOISE_MODIFIER_3D;
 				}
 			}
 		}
@@ -214,24 +214,34 @@ namespace VoxelWasteland::Core
 
     /*
 	* @brief Blend the height map with the noise map
+    * @param std::vector<float>& heightMap: height map
 	* @param std::vector<float>& noiseMap1: first noise map
-	* @param std::vector<float>& heightMap: height map
     */
-    void ChunkManager::HeightMapBlend(std::vector<float>& noiseMap1, std::vector<float>& heightMap)
+    void ChunkManager::HeightMapBlend(std::vector<float>& heightMap, std::vector<float>& noiseMap1)
     {
         if (noiseMap1.size() != heightMap.size())
             return;
 
-        float time = 0.0f;
-		for (int i = 0; i < heightMap.size(); ++i)
-		{         
-            if (heightMap[i] != 0)
+        for (int x = 0; x < CHUNK_SIZE * MAP_SIZE; ++x)
+        {
+            for (int z = 0; z < CHUNK_SIZE * MAP_SIZE; ++z)
             {
-                time = i / (float)heightMap.size();
-                time = glm::smoothstep(0.0f, 1.0f, time);
-                noiseMap1[i] = noiseMap1[i] * (1.0 - time) + (heightMap[i] * time);
-            }       
-		}
+				float preY = 0.0f;
+                for (int y = 0; y < CHUNK_HEIGHT; ++y)
+                {
+					int index = x * CHUNK_SIZE * MAP_SIZE * CHUNK_HEIGHT + z * CHUNK_HEIGHT + y;
+
+                    if (heightMap[index] != 0 && noiseMap1[index] <= 0)
+                    {
+						heightMap[index] = 0;
+					}
+                    else if (heightMap[index] == 0 && noiseMap1[index] > 0)
+                    {
+                        heightMap[index] = 1.0f;
+                    }
+                }
+            }
+        }
     }
 
     /*

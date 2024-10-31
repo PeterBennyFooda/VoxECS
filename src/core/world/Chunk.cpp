@@ -569,21 +569,10 @@ namespace VoxelWasteland::Core
 						continue;
 					}
 
-					if (is3DNoise)
+					if (noise != 0)
 					{
-						if (noise > CHUNK_ACCEPTABLE_NOISE_3D)
-						{
-							block.SetActive(true);
-							InitBlocks(glm::vec3(x, y, z), block);
-						}
-					}
-					else
-					{
-						if (noise != 0)
-						{
-							block.SetActive(true);
-							InitBlocks(glm::vec3(x, y, z), block);
-						}
+						block.SetActive(true);
+						InitBlocks(glm::vec3(x, y, z), block);
 					}
 				}
 			}
@@ -1262,11 +1251,12 @@ namespace VoxelWasteland::Core
 
 		for (auto& pos : treePositions)
 		{
-			for (int y = 10; y < CHUNK_MAX_HEIGHT; ++y)
+			for (int y = 10; y < CHUNK_HEIGHT; ++y)
 			{
 				if (y + 5 <= CHUNK_HEIGHT 
 					&& !GetBlock(pos.x, y + 7, pos.y).IsActive()
 					&& !GetBlock(pos.x, y + 5, pos.y).IsActive()
+					&& !GetBlock(pos.x, y + 3, pos.y).IsActive()
 					&& !GetBlock(pos.x, y + 1, pos.y).IsActive())
 				{
 					float worldX = (pos.x + offset.x) * BLOCK_SIZE * 2;
@@ -1274,6 +1264,9 @@ namespace VoxelWasteland::Core
 					
 					glm::vec3 blockPos = glm::vec3(0);
 					if (!CheckBlockExists(worldX, y, worldZ, blockPos))
+						continue;
+
+					if (GetBlock(pos.x, y, pos.y).GetData().name != "VoxelWasteland::grass_block")
 						continue;
 
 					CreateTree(blockPos, 5, 7);
