@@ -11,10 +11,10 @@ The ECS system utilizes a **Sparse Set** to maintain entity-component relationsh
 ### Simple Terrain Generation
 Employed 2D and 3D **Perlin noise** to generate smooth, natural terrains, and utilized **Poisson Disc Sampling** for tree placement.
 
-<img src= "https://github.com/user-attachments/assets/8a980a4d-dd6d-4c58-b805-bd30aebb0d20" width ="382.5" height="288">
-<img src= "https://github.com/user-attachments/assets/3a00deed-da57-46d5-a76c-ea31e9021094" width ="382.5" height="288">
-<img src= "https://github.com/user-attachments/assets/f4aa6cd4-c993-4b1a-88ff-9b87dd0cfc7f" width ="382.5" height="288">
-<img src= "https://github.com/user-attachments/assets/687af15d-7f3f-4fd7-93d8-aab2ccaf2b8f" width ="382.5" height="288">
+<img src= "https://github.com/user-attachments/assets/8a980a4d-dd6d-4c58-b805-bd30aebb0d20" width ="382.5" height="214">
+<img src= "https://github.com/user-attachments/assets/3a00deed-da57-46d5-a76c-ea31e9021094" width ="382.5" height="214">
+<img src= "https://github.com/user-attachments/assets/f4aa6cd4-c993-4b1a-88ff-9b87dd0cfc7f" width ="382.5" height="214">
+<img src= "https://github.com/user-attachments/assets/feacec24-2c06-4691-b877-db089daa1205" width ="382.5" height="214">
 
 ### Chunk Management
 Combined voxels into chunk meshes and culled unseen faces to optimize the meshing process.  
