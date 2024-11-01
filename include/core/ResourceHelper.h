@@ -256,6 +256,21 @@ namespace VoxelWasteland::Core
 		}
 
 		/*
+		* @brief get the block json data
+		* @param id: the block id
+		* @return the block data
+		*/
+		inline static BlockData& GetBlockData(const int id)
+		{
+			if (blockList.empty())
+			{
+				LoadBlockData();
+			}
+
+			return blockMap[id];
+		}
+
+		/*
 		* @brief get the default textures
 		* @param id: the block id
 		* @return a vector of default texture paths

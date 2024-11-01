@@ -7,7 +7,7 @@ namespace VoxelWasteland::Core
 {
 	Chunk::Chunk() : mesh(nullptr), offset(0.0f, 0.0f)
 	{
-		blocks = std::vector<Block>(CHUNK_SIZE * CHUNK_HEIGHT * CHUNK_SIZE, Block(BlockData(), false));
+		blocks = std::vector<Block>(CHUNK_SIZE * CHUNK_HEIGHT * CHUNK_SIZE, Block(0, false));
 	}
 
 	Chunk::~Chunk()
@@ -155,7 +155,6 @@ namespace VoxelWasteland::Core
 	*/
 	bool Chunk::AddBlock(const glm::vec3& pos, const unsigned int id)
 	{
-		const std::unordered_map<int, BlockData>& blockData = ResourceHelper::GetBlockData();
 		bool outOfBounds = false;
 		glm::vec3 newBlockPos = pos;
 		
@@ -186,7 +185,7 @@ namespace VoxelWasteland::Core
 		{
 			Block& newBlock = GetBlockActual(newBlockPos.x, newBlockPos.y, newBlockPos.z);
 			newBlock.SetActive(true);
-			newBlock.SetData(blockData.at(id));
+			newBlock.SetData(id);
 
 			// Update the neighbours for AO
 			if (indexX == 0 && nebighours.left)
@@ -220,7 +219,6 @@ namespace VoxelWasteland::Core
 		}
 
 		bool success = false;
-		const std::unordered_map<int, BlockData>& blockData = ResourceHelper::GetBlockData();
 		
 		for (int i = 0; i<positions.size(); ++i)
 		{
@@ -257,7 +255,7 @@ namespace VoxelWasteland::Core
 			{
 				Block& newBlock = GetBlockActual(newBlockPos.x, newBlockPos.y, newBlockPos.z);
 				newBlock.SetActive(true);
-				newBlock.SetData(blockData.at(id));
+				newBlock.SetData(id);
 
 				// Update the neighbours for AO
 				if (indexX == 0 && nebighours.left)
@@ -584,8 +582,6 @@ namespace VoxelWasteland::Core
 	*/
 	void Chunk::InitEnvironment()
 	{
-		const std::unordered_map<int, BlockData>& blockData = ResourceHelper::GetBlockData();
-
 		// replace top dirt blocks with grass block
 		for (int x = 0; x < CHUNK_SIZE; ++x)
 		{
@@ -601,10 +597,10 @@ namespace VoxelWasteland::Core
 					if (block.IsActive() && y+1 <= CHUNK_HEIGHT)
 					{
 						if(y + 1 == CHUNK_HEIGHT)
-							block.SetData(blockData.at(5));
+							block.SetData(5);
 						else if (!GetBlock(x, y + 1, z).IsActive())
 						{
-							block.SetData(blockData.at(5));
+							block.SetData(5);
 						}
 					}
 				}
@@ -720,19 +716,19 @@ namespace VoxelWasteland::Core
 		// Init block data based on height
 		if (pos.y <= CHUNK_MIN_HEIGHT)
 		{
-			block.SetData(blockData.at(0));
+			block.SetData(0);
 		}
 		else if (pos.y <= 5.0f)
 		{
-			block.SetData(blockData.at(1));
+			block.SetData(1);
 		}
 		else if (pos.y <= CHUNK_SURFACE_HEIGHT)
 		{
-			block.SetData(blockData.at(2));
+			block.SetData(2);
 		}
 		else
 		{
-			block.SetData(blockData.at(4));
+			block.SetData(4);
 		}
 	}
 

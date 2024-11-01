@@ -2,8 +2,8 @@
 
 namespace VoxelWasteland::Core 
 {
-	Block::Block(BlockData data, bool active) :
-		data(data), active(active)
+	Block::Block(int id, bool active) :
+		id(id), active(active)
 	{
 	}
 
@@ -31,11 +31,11 @@ namespace VoxelWasteland::Core
 
 	/*
 	* @brief set the data of the block
-	* @param BlockData& data: the data of the block
+	* @param id: the id of the block
 	*/
-	void Block::SetData(const BlockData& data)
+	void Block::SetData(const int id)
 	{
-		this->data = data;
+		this->id = id;
 	}
 
 	/*
@@ -44,11 +44,7 @@ namespace VoxelWasteland::Core
 	*/
 	BlockData& Block::GetData()
 	{
-		return data;
-	}
-	const BlockData& Block::GetData() const
-	{
-		return data;
+		return ResourceHelper::GetBlockData(id);
 	}
 }
 
