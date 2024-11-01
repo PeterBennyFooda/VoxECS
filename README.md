@@ -6,7 +6,7 @@ VoxECS is a voxel game engine designed with an Entity Component System (ECS) arc
 ### Entity Component System (ECS)
 In the ECS, an **entity** is represented as an unsigned integer, while **components** are simple data structures without logic; **systems** handle the associated logic.  
 
-The ECS system utilizes a **Sparse Set** to maintain entity-component relationships, featuring a templated class called ComponentPool that encapsulates the SparseSet, ensuring efficient component management with **O(1) time complexity** for insertions, deletions, and lookups.
+The ECS system utilizes a **Sparse Set** to maintain entity-component relationships, featuring a templated class called ComponentPool that encapsulates the Sparse Set, ensuring efficient component management with **O(1) time complexity** for insertions, deletions, and lookups.
 
 ### Simple Terrain Generation
 Employed 2D and 3D **Perlin noise** to generate smooth, natural terrains, and utilized **Poisson Disc Sampling** for tree placement.
